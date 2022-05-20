@@ -19,8 +19,14 @@ class GotifyNotification:
 
     CONTENT_TYPE = 'plain'
 
-    def __init__(self, url, app_token: str, title: str,
-                 message: str, priority: int = 5):
+    def __init__(
+        self,
+        url,
+        app_token: str,
+        title: str,
+        message: str,
+        priority: int = 5
+    ):
         """Constructor method"""
 
         self.url = url + '/message'
