@@ -13,7 +13,7 @@ class GotifyNotification:
     :type title: str
     :param message: message
     :type message: str
-    :param priority: message priority, defaults to 5
+    :param priority: message priority, defaults to 6
     :type priority: int, optional
     """
 
@@ -25,7 +25,7 @@ class GotifyNotification:
         app_token: str,
         title: str,
         message: str,
-        priority: int = 5
+        priority: int = 6
     ):
         """Constructor method"""
 
