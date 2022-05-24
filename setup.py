@@ -5,13 +5,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="gotify_message",
-    version="0.1.0",
+    version="0.1.5",
     author="Przemek Bubasr",
     author_email="bubasenator@gmail.com",
     description="Python module to push messages to gotify server",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="'https://github.com/pbubas/gotify_message",
+    url="https://github.com/pbubas/gotify_message",
     project_urls={
         "Bug Tracker": "https://github.com/pbubas/gotify_message/issues",
     },
@@ -20,9 +20,9 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    package_dir={"": "src"},
-    packages=setuptools.find_packages(where="src"),
+    #package_dir={"": "gotify_message"},
+    #packages=setuptools.find_packages(where="gotify_message"),
+    packages=setuptools.find_packages(),
     python_requires=">=3.6",
     install_requires=['requests>=2.25.1'],
-
 )
