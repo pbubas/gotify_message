@@ -20,8 +20,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    #package_dir={"": "gotify_message"},
-    #packages=setuptools.find_packages(where="gotify_message"),
     packages=setuptools.find_packages(),
     python_requires=">=3.6",
     install_requires=['requests>=2.25.1'],
