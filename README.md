@@ -11,6 +11,7 @@ Gotify is messaging service that can be installed in LAN network and used withou
 ## Example use
 
 ```python
+>>> from gotify_message import GotifyNotification
 >>> message=GotifyNotification("http://10.0.0.7:8090", "AiOLxxDxYOCc7bY", "test_title", "test_message")
 >>> print(message.json)
 {
