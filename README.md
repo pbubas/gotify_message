@@ -33,4 +33,14 @@ Gotify is messaging service that can be installed in LAN network and used withou
 }
 >>> message.send()
 <Response [200]>
+>>> message.send("test message")
+<Response [200]>
+>>> message.send("test message", "test_title")
+<Response [200]>
+>>> message.delivered
+False
+>>> message.send('test message')
+<Response [200]>
+>>> message.delivered
+True
 ```

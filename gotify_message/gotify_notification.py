@@ -23,8 +23,8 @@ class GotifyNotification:
         self,
         url,
         app_token: str,
-        title: str,
-        message: str,
+        title: str = None,
+        message: str = None,
         priority: int = 5
     ):
         """Constructor method"""
@@ -44,19 +44,39 @@ class GotifyNotification:
                 }
             }
         }
+        self.delivered = False
 
-    def send(self) -> requests.models.Response:
+    def send(self,
+             message: str = None,
+             title: str = None,
+             priority: int = None) -> requests.models.Response:
         """sends message to gotify server
 
+        :param title: title of the message
+        :type title: str
+        :param message: message
+        :type message: str
+        :param priority: message priority, defaults to 5
+        :type priority: int, optional
         :return: _description_
         :rtype: response.Request
         """
 
-        return requests.post(
+        if message:
+            self.payload['message'] = message
+        if title:
+            self.payload['title'] = title
+        if priority:
+            self.payload['priority'] = priority
+
+        response = requests.post(
             self.url,
             headers=self.headers,
             json=self.payload
         )
+        if response.ok:
+            self.delivered = True
+        return response
 
     @property
     def json(self) -> str:
