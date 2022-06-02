@@ -1,14 +1,14 @@
-import requests
 import json
+from gotify_connector import GotifyConnector
 
 
-class GotifyNotification:
+class GotifyNotification(GotifyConnector):
     """Basic gotify notification class
 
     :param url: gotify server url
     :type url: str
-    :param app_token: token to which application send a message
-    :type app_token: str
+    :param token: token to which application send a message
+    :type token: str
     :param title: title of the message
     :type title: str
     :param message: message
@@ -16,24 +16,20 @@ class GotifyNotification:
     :param priority: message priority, defaults to 5
     :type priority: int, optional
     """
-
     CONTENT_TYPE = 'plain'
 
     def __init__(
         self,
-        url,
-        app_token: str,
+        url: str = None,
+        token: str = None,
         title: str = None,
         message: str = None,
         priority: int = 5
     ):
         """Constructor method"""
 
-        self.url = url + '/message'
-        self.headers = {
-            "X-Gotify-Key": app_token,
-            "Content-type": 'application/json'
-        }
+        super().__init__(url, token)
+
         self.payload = {
             "title": title,
             "priority": priority,
@@ -46,20 +42,22 @@ class GotifyNotification:
         }
         self.delivered = False
 
-    def send(self,
-             message: str = None,
-             title: str = None,
-             priority: int = None) -> requests.models.Response:
+    def send(
+        self,
+        message: str = None,
+        title: str = None,
+        priority: int = None
+    ) -> bool:
         """sends message to gotify server
 
-        :param title: title of the message
-        :type title: str
         :param message: message
         :type message: str
+        :param title: title of the message
+        :type title: str
         :param priority: message priority, defaults to 5
         :type priority: int, optional
-        :return: _description_
-        :rtype: response.Request
+        :return: True is message delivered
+        :rtype: bool
         """
 
         if message:
@@ -69,14 +67,10 @@ class GotifyNotification:
         if priority:
             self.payload['priority'] = priority
 
-        response = requests.post(
-            self.url,
-            headers=self.headers,
-            json=self.payload
-        )
-        if response.ok:
+        if self._post("/message", self.payload):
             self.delivered = True
-        return response
+
+        return self.delivered
 
     @property
     def json(self) -> str:
