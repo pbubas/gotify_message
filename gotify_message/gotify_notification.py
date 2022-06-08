@@ -1,5 +1,5 @@
 import json
-from gotify_connector import GotifyConnector
+from .gotify_connector import GotifyConnector
 
 
 class GotifyNotification(GotifyConnector):
