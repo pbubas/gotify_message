@@ -39,7 +39,7 @@ class GotifyConnector:
         resource: dict = None,
         payload: dict = None,
         headers: dict = None,
-    ) --> dict:
+    ) -> dict:
 
         _headers = {
             "X-Gotify-Key": self.token,
