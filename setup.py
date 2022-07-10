@@ -5,8 +5,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="gotify_message",
-    version="0.1.1",
-    author="Przemek Bubasr",
+    version="0.2.1",
+    author="Przemek Bubas",
     author_email="bubasenator@gmail.com",
     description="Python module to push messages to gotify server",
     long_description=long_description,

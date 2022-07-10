@@ -2,3 +2,6 @@
 dist
 *.egg-info
 __pycache__
+.tox
+tox.ini
+/venv
